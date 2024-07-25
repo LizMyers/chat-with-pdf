@@ -1,4 +1,4 @@
-import Documents from "@/components/Documents";
+import Documents from "@/app/components/Documents";
 
 export const dynamic = "force-dynamic";
 
