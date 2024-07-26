@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { db, storage } from "../../firebase";
 import { setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { generateEmbeddings } from "@/actions/generateEmbeddings";
 
 export enum StatusText {
     UPLOADING = "Uploading",
@@ -57,7 +58,10 @@ function useUpload() {
         });
 
         setStatus(StatusText.GENERATING);
-        //TODO: Generate AI embeddings
+
+        //Generate AI embeddings
+        await generateEmbeddings(fileIdToUploadTo);
+        //await router.push(`/dashboard/files/${fileIdToUploadTo}`);
 
         setFileId(fileIdToUploadTo);
         
