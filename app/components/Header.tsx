@@ -44,8 +44,8 @@ export default function Header() {
           <SignedIn>
             <div className="flex items-center space-x-2">
               <Button asChild variant="outline" className="hover:bg-indigo-600 border-none hidden md:flex">
-                <Link href="/dashboard/pricing" className="text-gray-500 hover:text-white">
-                  Upgrade
+                <Link href="/dashboard/upgrade" className="text-gray-500 hover:text-white">
+                  Pricing
                 </Link>
               </Button>
       
