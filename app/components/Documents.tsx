@@ -1,24 +1,42 @@
-// app/components/Documents.tsx
-interface Document {
-  name: string;
-  url: string;
-}
+import { adminDb } from "@/firebaseAdmin";
+import PlaceholderDocument from "./PlaceholderDocument";
+import { auth } from "@clerk/nextjs/server";
+import Document from "./Document";
 
-interface DocumentsProps {
-  documents: Document[];
-}
+async function Documents() {
+  auth().protect();
 
-function Documents({ documents }: DocumentsProps) {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("User not found");
+  }
+
+  const documentsSnapshot = await adminDb
+    .collection("users")
+    .doc(userId)
+    .collection("files")
+    .get();
+
   return (
-    <div>
-      {documents.map(doc => (
-        <div key={doc.name} className="p-4 bg-white rounded-lg shadow-md mb-4">
-          <h2 className="text-xl font-bold">{doc.name}</h2>
-          <a href={doc.url} target="_blank" rel="noopener noreferrer">Open Document</a>
-        </div>
-      ))}
+    <div className="flex flex-wrap p-5 bg-gray-100 justify-center lg:justify-start rounded-sm gap-5 max-w-7xl mx-auto">
+      {/* Map through the documents */}
+      {documentsSnapshot.docs.map((doc) => {
+        const { name, downloadUrl, size } = doc.data();
+
+        return (
+          <Document
+            key={doc.id}
+            id={doc.id}
+            name={name}
+            size={size}
+            downloadUrl={downloadUrl}
+          />
+        );
+      })}
+
+      <PlaceholderDocument />
     </div>
   );
 }
-
 export default Documents;
