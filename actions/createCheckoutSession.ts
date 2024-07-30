@@ -34,14 +34,15 @@ export async function createCheckoutSession(userDetails: UserDetails) {
         stripeCustomerId = customer.id;
     }
 
-
+ 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         customer: stripeCustomerId,
         mode: 'subscription',
         line_items: [
             {
-                price: "price_1PgqJXHRNpQOUjjhvnQUBseI",
+                //price: "price_1PgqJXHRNpQOUjjhvnQUBseI",
+                price: "price_1PgwKKKRmXbstzLO4ocAEXeA",
                 quantity: 1,
             },
         ],

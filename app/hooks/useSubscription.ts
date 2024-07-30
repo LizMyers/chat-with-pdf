@@ -7,8 +7,9 @@ import { doc, collection } from 'firebase/firestore';
 import { useDocument, useCollection } from 'react-firebase-hooks/firestore';
 
 //number of docs user can have
-const PRO_LIMIT = 20;
 const FREE_LIMIT = 2;
+const PRO_LIMIT = 20;
+
 
 // Limit to 20 docs
 function useSubscription() {
@@ -35,10 +36,11 @@ function useSubscription() {
         if (!snapshot) return;
 
         const data = snapshot.data();
+        console.log('DEBUG DATA: ', data);
 
         if (!data) return;
 
-        setHasActiveMembership(data.activeMembership)
+        setHasActiveMembership(hasActiveMembership)
 
     }, [snapshot]);
 

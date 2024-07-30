@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import useSubscription  from '../../hooks/useSubscription'
 import { createCheckoutSession } from '@/actions/createCheckoutSession'
 import getStripe from '@/lib/stripe-js'
+import createStripePortal from '@/actions/createStripePortal'
  
 
 export type UserDetails = {
@@ -16,11 +17,12 @@ export type UserDetails = {
 }
 
 function PricingPage() {
-
   const { user } = useUser()
   const router = useRouter()
   const { hasActiveMembership, loading } = useSubscription();
   const [ isPending, setIsPending ] = useTransition();
+
+  console.log(hasActiveMembership)
 
   const handleUpgrade = () => {
     if(!user) return;
@@ -34,16 +36,16 @@ function PricingPage() {
         const stripe = await getStripe();
 
         if(hasActiveMembership) {
-            //create stripe portal 
-
+            const stripePortalUrl = await createStripePortal();
+            return router.push(stripePortalUrl);
         }
 
         const sessionId = await createCheckoutSession(userDetails);
 
         await stripe?.redirectToCheckout({
             sessionId,
-        })
-    })
+        });
+    });
   }
 
   return (
@@ -60,6 +62,16 @@ function PricingPage() {
             <p className='mx-auto mt-6 max-w-2xl px 10 text-center text-lg leading-8 text-gray-600'>
                 Choose an affordable plan that's apacked with the best featrues for interacting with your PDFs, enhancing productivity, and streamlining your workflow.
             </p>
+
+            {/* 
+              [Open a new terminal and run the following command:]
+              stripe listen --forward-to localhost:3000/webhook 
+              [
+                This command will start listening for events on your Stripe account and forward them to your local server at http://localhost:3000/webhook
+
+                You should copy/paste the webhook signing secret from your Stripe dashboard into the .env.local file.
+              ]
+            */}
 
             <div className='max-w-md mx-auto mt-10 grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 md:max-w-2xl gap-8 lg:max-w-4xl'>
                 
