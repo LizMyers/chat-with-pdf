@@ -51,6 +51,9 @@ export default function Header() {
           </button>
           {menuOpen && (
             <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md z-10 w-48 flex flex-col space-y-2 p-2">
+            <Link href="/" className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
+                Home
+              </Link>
               <Link href="/dashboard/upgrade" className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
                 Upgrade
               </Link>
@@ -61,13 +64,14 @@ export default function Header() {
           )}
         </div>
 
-        <Link href="/dashboard" className="text-2xl font-bold">
+        <Link href="/" className="text-2xl font-bold">
           <span className="text-gray-400">Chat to </span>
           <span className="text-red-600">PDF</span>
         </Link>
-        <Button asChild variant="outline" className="border-none bg-red-600 md:flex">
+        <Button asChild variant="outline" className="border-none bg-red-600 md:flex tooltip">
           <Link href="/dashboard/upload" className="text-white hover:bg-red-600">
             <FilePlus2 className="text-white hover:text-white border-none" />
+            <span className="tooltiptext">Add New Doc</span>
           </Link>
         </Button>
       </div>

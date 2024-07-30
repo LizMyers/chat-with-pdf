@@ -1,3 +1,4 @@
+'use client'
 
 import {
   MapPinIcon,
@@ -7,11 +8,11 @@ import {
   MonitorSmartphoneIcon,
   ZapIcon,
 } from "lucide-react";
-
 import { Button } from "@/app/components/ui/button";
-
 import Link from "next/link";
 import Image from "next/image";
+import { useUser } from '@clerk/nextjs';
+import { isStringObject } from "util/types";
 
 const features = [
   {
@@ -48,6 +49,10 @@ const features = [
 
 
 export default function Home() {
+
+  const { isSignedIn } = useUser();
+
+  
   return (
     <main className="flex-1 overflow-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
 
@@ -69,7 +74,11 @@ export default function Home() {
             into <span className="font-semibold">dynamic conversations</span>, enhancing productivity 10x fold effortlessly.
           </p>
           <Button className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300">
-            <Link href="../dashboard">Getting Started</Link>
+           { isSignedIn ? ( 
+              <Link href="/dashboard">My Dashboard</Link>
+            ) : (
+              <Link href="/dashboard">Get Started</Link>
+            )}
           </Button>
         </div>
     

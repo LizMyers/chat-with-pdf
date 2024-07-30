@@ -1,16 +1,24 @@
-import React from 'react'
-import PlaceholderDoc from './PlaceholderDoc'
-
-function Documents() {
-  return (
-    <div className="h-full max-w-7xl mx-auto p-5">
-        {/* MAP Documents */}  
-
-        
-
-        <PlaceholderDoc />
-    </div>
-  )
+// app/components/Documents.tsx
+interface Document {
+  name: string;
+  url: string;
 }
 
-export default Documents
+interface DocumentsProps {
+  documents: Document[];
+}
+
+function Documents({ documents }: DocumentsProps) {
+  return (
+    <div>
+      {documents.map(doc => (
+        <div key={doc.name} className="p-4 bg-white rounded-lg shadow-md mb-4">
+          <h2 className="text-xl font-bold">{doc.name}</h2>
+          <a href={doc.url} target="_blank" rel="noopener noreferrer">Open Document</a>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default Documents;
