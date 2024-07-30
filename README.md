@@ -1,17 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Changes I've Made
 
-First, run the development server:
+1. Added Hamburger to Header Menu - so that buttons are not hidden in mobile/smallest size
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. Hardened Firebase security - passing Clerk auth token to Firebase, adjusted Firestore and Storage rules accordingly
+
+3. Enhanced UI for greater readability/scanability
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
