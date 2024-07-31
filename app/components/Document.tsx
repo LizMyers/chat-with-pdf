@@ -6,7 +6,7 @@ import { DownloadCloud, Trash2Icon } from "lucide-react";
 import useSubscription from "../hooks/useSubscription";
 import { useTransition } from "react";
 import { Button } from "./ui/button";
-import { deleteDocument } from "../..//actions/deleteDocument";
+import { deleteDocument } from "../../actions/deleteDocument";
 
 function Document({
   id,

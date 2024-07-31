@@ -13,7 +13,7 @@ import { generateEmbeddings } from "@/actions/generateEmbeddings";
 export enum StatusText {
     UPLOADING = "Uploading",
     UPLOADED = "File uploaded successfully",
-    SAVING = "Saving file to dtabase...",
+    SAVING = "Saving file to database...",
     GENERATING = "Generating AI Embeddings, This will only take a few seconds",
 }
 

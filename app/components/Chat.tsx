@@ -70,7 +70,7 @@ function Chat({ id }: { id: string }) {
     setMessages(newMessages);
 
     // Ignore messages dependancy warning here... we dont want an infinite loop
-  }, [snapshot]);
+  }, [snapshot, messages]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

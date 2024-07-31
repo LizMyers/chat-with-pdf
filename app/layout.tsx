@@ -1,13 +1,15 @@
-import {ClerkProvider,} from '@clerk/nextjs';
+// root layout for the app
+
+import { ClerkProvider } from '@clerk/nextjs';
 import { dark, neobrutalism, shadesOfPurple } from '@clerk/themes';
 import "./globals.css";
-
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <ClerkProvider
     appearance={{

@@ -4,6 +4,7 @@ import { FrownIcon, PlusCircleIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import useSubscription from "../hooks/useSubscription";
+import { FilePlus2 } from "lucide-react";
 
 function PlaceholderDocument() {
   const { isOverFileLimit } = useSubscription();
@@ -26,7 +27,7 @@ function PlaceholderDocument() {
       {isOverFileLimit ? (
         <FrownIcon className="h-16 w-16" />
       ) : (
-        <PlusCircleIcon className="h-16 w-16" />
+        <FilePlus2  className="h-16 w-16" />
       )}
 
       <p className="font-semibold">

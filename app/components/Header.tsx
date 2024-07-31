@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { UserButton, SignedIn } from '@clerk/nextjs';
 import { Button } from './ui/button';
-import { FilePlus2, Menu, X } from 'lucide-react';
+import { FilePlus2, Menu, X, MessageCirclePlus } from 'lucide-react';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,6 +38,7 @@ export default function Header() {
     },
   };
 
+
   return (
     <div className="flex justify-between mx-10 mt-10 shadow-sm bg-white border-b p-5 relative">
       <div className="flex items-center space-x-4">
@@ -51,25 +52,29 @@ export default function Header() {
           </button>
           {menuOpen && (
             <div className="absolute left-0 top-full mt-2 bg-white shadow-lg rounded-md z-10 w-48 flex flex-col space-y-2 p-2">
-            <Link href="/" className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
+            <Link href="/"  target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
                 Home
               </Link>
-              <Link href="/dashboard/upgrade" className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
+              <Link href="/dashboard/upgrade" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
                 Upgrade
               </Link>
-              <Link href="/dashboard" className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
+              <Link href="/dashboard"  target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
                 My Documents
               </Link>
             </div>
           )}
         </div>
 
-        <Link href="/" className="text-2xl font-bold">
+      
+
+        <Link href="https://docubot-145eixifc-lizmyers-projects.vercel.app" target='_top' className="text-2xl font-bold">
           <span className="text-gray-400">Chat to </span>
           <span className="text-red-600">PDF</span>
         </Link>
+
+
         <Button asChild variant="outline" className="border-none bg-red-600 md:flex tooltip">
-          <Link href="/dashboard/upload" className="text-white hover:bg-red-600">
+          <Link href="/dashboard/upload" target='_top' className="text-white hover:bg-red-600">
             <FilePlus2 className="text-white hover:text-white border-none" />
             <span className="tooltiptext">Add New Doc</span>
           </Link>
@@ -83,8 +88,8 @@ export default function Header() {
             variant="outline"
             className="hover:bg-indigo-600 border-none hidden md:flex"
           >
-            <Link href="/dashboard/upgrade" className="text-gray-500 hover:text-white">
-              Upgrade
+            <Link href="/dashboard/upgrade" target='_top'className="text-gray-500 hover:text-white">
+             Upgrade
             </Link>
           </Button>
 
@@ -92,8 +97,8 @@ export default function Header() {
             asChild
             variant="outline"
             className="hover:bg-indigo-600 border-none hidden md:flex"
-          >
-            <Link href="/dashboard" className="text-gray-500 hover:text-white">
+    >
+            <Link href="/dashboard" target='_top' className="text-gray-500 hover:text-white">
               My Documents
             </Link>
           </Button>
