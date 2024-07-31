@@ -26,7 +26,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-# .env*.local
+*.local
+*.env.local
 # .env
 
 # vercel
@@ -38,5 +39,5 @@ next-env.d.ts
 
 firebase.ts
 firebase*
-service_key.json
+*.json
 firebaseAdmin*
