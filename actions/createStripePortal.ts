@@ -29,3 +29,5 @@ export async function createStripePortal() {
 
     return session.url;
 }
+
+export default createStripePortal
