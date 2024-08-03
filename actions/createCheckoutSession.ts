@@ -46,7 +46,7 @@ export async function createCheckoutSession(userDetails: UserDetails) {
             },
         ],
         success_url: `${getBaseUrl()}/dashboard?upgrade=true`,
-        cancel_url: `${getBaseUrl()}/upgrade`,
+        cancel_url: `${getBaseUrl()}/dashboard`,
     });
 
     return session.id; 
