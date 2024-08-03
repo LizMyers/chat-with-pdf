@@ -2,7 +2,7 @@
 
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/toaster';
-import "./global.css";
+import "./globals.css";
 
 export default function RootLayout({
   children,
