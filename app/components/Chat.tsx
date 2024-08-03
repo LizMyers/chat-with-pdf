@@ -70,7 +70,7 @@ function Chat({ id }: { id: string }) {
     setMessages(newMessages);
 
     // Ignore messages dependancy warning here... we dont want an infinite loop
-  }, [snapshot, messages]);
+  }, [snapshot]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -120,7 +120,7 @@ function Chat({ id }: { id: string }) {
   };
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto">
+    <div className="flex flex-col h-full overflow-scroll">
       {/* Chat contents */}
       <div className="flex-1 w-full">
         {/* chat messages... */}
