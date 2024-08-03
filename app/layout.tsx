@@ -1,15 +1,12 @@
-// root layout for the app
-
-import { ClerkProvider } from '@clerk/nextjs';
-import { Toaster } from '@/components/ui/toaster';
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toaster";
 import "./global.css";
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
-  
+}>) {
   return (
     <ClerkProvider>
       <html lang="en">

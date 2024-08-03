@@ -96,6 +96,11 @@ body {
   opacity: 1;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+}
+
 @layer base {
   * {
     @apply border-border;

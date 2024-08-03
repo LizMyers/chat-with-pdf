@@ -1,3 +1,4 @@
+import Header from "../../../components/Header";
 import Chat from "../../../components/Chat";
 import PdfView from "../../../components/PdfView";
 import { adminDb } from "@/firebaseAdmin";
@@ -23,9 +24,10 @@ async function ChatToFilePage({
   const url = ref.data()?.downloadUrl;
 
   return (
-    <div className="grid lg:grid-cols-5 h-screen overflow-hidden">
+    <div className="grid lg:grid-cols-5 overflow-hidden bg-indigo-50">
+      
       {/* Right */}
-      <div className="col-span-5 lg:col-span-2 overflow-y-auto">
+      <div className="col-span-5 lg:col-span-2 overflow-y-scroll">
         {/* Chat */}
         <Chat id={id} />
       </div>
@@ -36,6 +38,7 @@ async function ChatToFilePage({
         <PdfView url={url} />
       </div>
     </div>
+
   );
 }
 export default ChatToFilePage;

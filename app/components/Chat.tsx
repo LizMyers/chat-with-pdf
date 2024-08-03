@@ -4,13 +4,12 @@ import { FormEvent, useEffect, useRef, useState, useTransition } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Loader2Icon } from "lucide-react";
-// import ChatMessage from "./ChatMessage";
+import ChatMessage from "./ChatMessage";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useUser } from "@clerk/nextjs";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase";
 import { askQuestion } from "@/actions/askQuestion";
-import ChatMessage from "./ChatMessage";
 import { useToast } from "./ui/use-toast";
 
 export type Message = {
@@ -48,14 +47,6 @@ function Chat({ id }: { id: string }) {
 
     console.log("Updated snapshot", snapshot.docs);
 
-    // get second last message to check if the AI is thinking
-    const lastMessage = messages.pop();
-
-    if (lastMessage?.role === "ai" && lastMessage.message === "Thinking...") {
-      // return as this is a dummy placeholder message
-      return;
-    }
-
     const newMessages = snapshot.docs.map((doc) => {
       const { role, message, createdAt } = doc.data();
 
@@ -68,8 +59,6 @@ function Chat({ id }: { id: string }) {
     });
 
     setMessages(newMessages);
-
-    // Ignore messages dependancy warning here... we dont want an infinite loop
   }, [snapshot]);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -79,7 +68,6 @@ function Chat({ id }: { id: string }) {
 
     setInput("");
 
-    // Optimistic UI update
     setMessages((prev) => [
       ...prev,
       {
@@ -96,8 +84,6 @@ function Chat({ id }: { id: string }) {
 
     startTransition(async () => {
       const { success, message } = await askQuestion(id, q);
-
-      console.log("DEBUG", success, message);
 
       if (!success) {
         toast({
@@ -121,39 +107,40 @@ function Chat({ id }: { id: string }) {
 
   return (
     <div className="flex flex-col h-full overflow-scroll">
-      {/* Chat contents */}
-      <div className="flex-1 w-full">
-        {/* chat messages... */}
+    {/* Chat contents */}
+    <div className="flex-1 w-full">
+      {/* chat messages... */}
+        <div className="p-5">
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <Loader2Icon className="animate-spin h-20 w-20 text-indigo-600 mt-20" />
+            </div>
+          ) : (
+            <>
+              {messages.length === 0 && (
+                <ChatMessage
+                  key={"placeholder"}
+                  message={{
+                    role: "ai",
+                    message: "Ask me anything about the document!",
+                    createdAt: new Date(),
+                  }}
+                />
+              )}
 
-        {loading ? (
-          <div className="flex items-center justify-center">
-            <Loader2Icon className="animate-spin h-20 w-20 text-indigo-600 mt-20" />
-          </div>
-        ) : (
-          <div className="p-5">
-            {messages.length === 0 && (
-              <ChatMessage
-                key={"placeholder"}
-                message={{
-                  role: "ai",
-                  message: "Ask me anything about the document!",
-                  createdAt: new Date(),
-                }}
-              />
-            )}
+              {messages.map((message, index) => (
+                <ChatMessage key={index} message={message} />
+              ))}
 
-            {messages.map((message, index) => (
-              <ChatMessage key={index} message={message} />
-            ))}
-
-            <div ref={bottomOfChatRef} />
-          </div>
-        )}
+              <div ref={bottomOfChatRef} />
+            </>
+          )}
+        </div>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="flex sticky bottom-0 space-x-2 p-5 bg-indigo-600/75"
+        className="flex space-x-2 p-5 bg-indigo-600/75"
       >
         <Input
           placeholder="Ask a Question..."
@@ -172,4 +159,5 @@ function Chat({ id }: { id: string }) {
     </div>
   );
 }
+
 export default Chat;

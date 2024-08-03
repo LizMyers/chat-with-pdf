@@ -33,7 +33,7 @@ function ChatMessage({ message }: { message: Message }) {
       </div>
 
       <div
-        className={`chat-bubble prose ${isHuman && "bg-indigo-600 text-white"}`}
+        className={`chat-bubble prose ${!isHuman && "bg-indigo-600 text-white"} ${isHuman && "bg-orange-600 text-white"}`}
       >
         {message.message === "Thinking..." ? (
           <div className="flex items-center justify-center">

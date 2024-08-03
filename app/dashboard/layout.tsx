@@ -14,9 +14,10 @@ function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <ClerkLoaded>
-      <div className='flex flex-col flex-1'>
-        <Header  />
-        <main className="flex-1 overflow-y-auto">
+       <Header />
+      <div className='flex-1 flex flex-col h-screen overflow-auto'>
+        <main className='flex-1'>
+       
           {children}
         </main>
       </div>

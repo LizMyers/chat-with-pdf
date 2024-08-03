@@ -50,7 +50,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex-1 overflow-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
+    <main className="flex overflow-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600">
 
     <div className="flex-1 bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
 
