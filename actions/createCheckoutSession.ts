@@ -7,7 +7,6 @@ import stripe from "../lib/stripe";
 import getBaseUrl from "@/lib/getBaseUrl";
 
 
-
 export async function createCheckoutSession(userDetails: UserDetails) {
     auth().protect();
     const { userId } = await auth();
@@ -29,14 +28,14 @@ export async function createCheckoutSession(userDetails: UserDetails) {
   
         await adminDb.collection('users').doc(userId!).set({
             stripeCustomerId: customer.id,
-        }, { merge: true });
+        });
 
         stripeCustomerId = customer.id;
     }
 
  
     const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
+        payment_method_types: ['card', 'paypal'],
         customer: stripeCustomerId,
         mode: 'subscription',
         line_items: [

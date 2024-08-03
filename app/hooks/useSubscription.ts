@@ -32,6 +32,7 @@ function useSubscription() {
     if (!snapshot) return;
 
     const data = snapshot.data();
+    console.log("User data", data);
 
     if (!data) return;
 
@@ -51,7 +52,7 @@ function useSubscription() {
     );
 
     setIsOverFileLimit(files.length >= usersLimit);
-  }, [filesSnapshot, hasActiveMembership, PRO_LIMIT, FREE_LIMIT]);
+  }, [filesSnapshot, hasActiveMembership]);
 
   return { hasActiveMembership, loading, error, isOverFileLimit, filesLoading };
 }

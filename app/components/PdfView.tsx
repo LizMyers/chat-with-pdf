@@ -40,7 +40,7 @@ function PdfView({ url }: { url: string }) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="lex flex-col justify-center items-center h-full overflow-y-auto">
       <div className="sticky top-0 z-50 bg-gray-100 p-2 rounded-b-lg">
         <div className="max-w-6xl px-2 grid grid-cols-6 gap-2">
           <Button

@@ -2,7 +2,8 @@
 
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark, neobrutalism, shadesOfPurple } from '@clerk/themes';
-import "./globals.css";
+import { Toaster } from '@/components/ui/toaster';
+import "./global.css";
 
 export default function RootLayout({
   children,
@@ -19,9 +20,12 @@ export default function RootLayout({
         baseTheme: [shadesOfPurple],
         variables: { colorPrimary: 'blue' }
       }
-    }}>
+    }}
+    afterSignOutUrl= 'http://localhost:3000' // Ensure user is redirected to root page after sign out
+    >
       <html lang="en">
         <body className="min-h-screen h-screen overflow-hidden flex flex-col">
+          <Toaster />
           {children}
         </body>
       </html>

@@ -46,8 +46,9 @@ function PricingPage() {
     });
   };
 
+  //stripe listen --forward-to localhost:3000/webhook
   return (
-    <div>
+    <div className="h-screen overflow-auto p-5">
       <div className="py-24 sm:py-32">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -158,6 +159,7 @@ function PricingPage() {
             </ul>
           </div>
         </div>
+        <div className="mt-20" /> {/* Add this div to create bottom space */}
       </div>
     </div>
   );

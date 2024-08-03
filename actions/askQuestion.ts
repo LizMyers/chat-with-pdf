@@ -2,12 +2,11 @@
 
 import { Message } from "../app/components/Chat";
 import { adminDb } from "@/firebaseAdmin";
-import { generateLangchainCompletion } from "../lib/langchain";
+import { generateLangchainCompletion } from "@/lib/langchain";
 import { auth } from "@clerk/nextjs/server";
-// import { generateLangchainCompletion } from "@/lib/langchain";
 
 const PRO_LIMIT = 20;
-const FREE_LIMIT = 2;
+const FREE_LIMIT = 4;
 
 export async function askQuestion(id: string, question: string) {
   auth().protect();

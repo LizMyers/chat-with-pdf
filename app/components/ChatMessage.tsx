@@ -17,7 +17,7 @@ function ChatMessage({ message }: { message: Message }) {
           {isHuman ? (
             user?.imageUrl && (
               <Image
-                src={user?.imageUrl as string}
+                src={user?.imageUrl}
                 alt="Profile Picture"
                 width={40}
                 height={40}

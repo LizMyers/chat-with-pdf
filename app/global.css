@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: auto;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

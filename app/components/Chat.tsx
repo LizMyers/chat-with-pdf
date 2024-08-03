@@ -120,7 +120,7 @@ function Chat({ id }: { id: string }) {
   };
 
   return (
-    <div className="flex flex-col h-full overflow-scroll">
+    <div className="flex flex-col h-full overflow-y-auto">
       {/* Chat contents */}
       <div className="flex-1 w-full">
         {/* chat messages... */}
