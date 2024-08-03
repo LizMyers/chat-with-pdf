@@ -11,6 +11,7 @@ import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase";
 import { askQuestion } from "@/actions/askQuestion";
 import { useToast } from "./ui/use-toast";
+import * as Toast from '@radix-ui/react-toast';
 
 export type Message = {
   id?: string;

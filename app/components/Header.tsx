@@ -120,7 +120,7 @@ const Header = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   setMenuOpen(false);
-                  //signOut();
+                  signOut();
                 }}
                 >
                   Home
@@ -131,18 +131,19 @@ const Header = () => {
                   Upgrade
                 </Link>
               )}
-              <Link href="/dashboard" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
-                My Documents
-              </Link>
+          
               {hasActiveMembership && (
                 <Link onClick={(e) => {
                   e.preventDefault();
                   setMenuOpen(false);
                   handleManagePlan();
                 }} href="#" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded">
-                  Manage Plan
+                  Pro Tier
                 </Link>
               )}
+              <Link href="/dashboard" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
+                My Documents
+              </Link>
             </div>
           )}
         </div>
@@ -182,18 +183,7 @@ const Header = () => {
               My Documents
             </Link>
           </Button>
-          {hasActiveMembership && (
-            <Button
-              asChild
-              variant="outline"
-              onClick={handleManagePlan}
-              className="hover:bg-indigo-600 border-none hidden md:flex"
-            >
-              <Link href="#" className="text-gray-500 hover:text-white">
-                Manage Plan
-              </Link>
-            </Button>
-          )}
+         
           <UserButton m-2 appearance={customAppearance} />
         </div>
       </SignedIn>

@@ -94,7 +94,7 @@ export default function Home() {
     {/* features */}
    
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-8 text-indigo-700">Features</h1>
+          <h1 className="text-4xl font-bold text-center mb-8 text-white">Features</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div className="bg-white p-8 rounded-lg flex items-start" key={index}>
