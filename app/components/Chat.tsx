@@ -10,8 +10,8 @@ import { useUser } from "@clerk/nextjs";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase";
 import { askQuestion } from "@/actions/askQuestion";
-import { useToast } from "./ui/use-toast";
-import * as Toast from '@radix-ui/react-toast';
+import { useToast } from "@/components/ui/use-toast";
+
 
 export type Message = {
   id?: string;
@@ -85,6 +85,8 @@ function Chat({ id }: { id: string }) {
 
     startTransition(async () => {
       const { success, message } = await askQuestion(id, q);
+
+      console.log("askQuestion", success, message);
 
       if (!success) {
         toast({
