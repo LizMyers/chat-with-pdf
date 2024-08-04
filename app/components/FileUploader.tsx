@@ -12,13 +12,16 @@ import {
 import useUpload, { StatusText } from "../hooks/useUpload";
 import { useRouter } from "next/navigation";
 import useSubscription from "../hooks/useSubscription";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 
 function FileUploader() {
   const { progress, status, fileId, handleUpload } = useUpload();
   const { isOverFileLimit, filesLoading } = useSubscription();
   const router = useRouter();
   const { toast } = useToast();
+  //set max file size to 100k
+  const maxFileSize = 102400; // 100KB in bytes
+  const maxFileSizeInKB = Math.round(maxFileSize / 1024); // Convert to KB and round
 
   useEffect(() => {
     if (fileId) {
@@ -28,11 +31,20 @@ function FileUploader() {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      // Do something with the files
-
       const file = acceptedFiles[0];
+
       if (file) {
-        if (!isOverFileLimit && !filesLoading) {
+        console.log("File size: ", file.size);
+        console.log("Max file size: ", maxFileSize);
+
+        if (file.size > maxFileSize) {
+          toast({
+            variant: "destructive",
+            title: `File is too big: (${Math.floor(file.size / 1024)}KB)`,
+            description: `Please use a PDF smaller than ${maxFileSizeInKB}KB`,
+          });
+        } else if (!isOverFileLimit && !filesLoading) {
+          console.log("Uploading file: ", file.name);
           await handleUpload(file);
         } else {
           toast({
@@ -43,8 +55,11 @@ function FileUploader() {
           });
         }
       } else {
-        // do nothing...
-        // toast...
+        toast({
+          variant: "destructive",
+          title: "No file selected",
+          description: "Please select a file to upload.",
+        });
       }
     },
     [handleUpload, isOverFileLimit, filesLoading, toast]

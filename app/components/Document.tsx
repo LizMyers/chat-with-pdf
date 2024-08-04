@@ -7,6 +7,17 @@ import useSubscription from "../hooks/useSubscription";
 import { useTransition } from "react";
 import { Button } from "./ui/button";
 import { deleteDocument } from "../../actions/deleteDocument";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 function Document({
   id,
@@ -40,27 +51,42 @@ function Document({
 
       {/* Actions */}
       <div className="flex space-x-2 justify-end">
-        <Button
-          variant="outline"
-          disabled={isDeleting || !hasActiveMembership}
-          onClick={() => {
-            const prompt = window.confirm(
-              "Are you sure you want to delete this document?"
-            );
+      <AlertDialog>
+        <AlertDialogTrigger>
+          <Button
+            variant="outline"
+            disabled={isDeleting || !hasActiveMembership}
+          >
+            <Trash2Icon className="h-6 w-6 text-red-500" />
+            {!hasActiveMembership && (
+              <span className="text-red-500 ml-2">PRO Feature</span>
+            )}
+          </Button>
+        </AlertDialogTrigger>
 
-            if (prompt) {
-              // delete document
-              startTransaction(async () => {
-                await deleteDocument(id);
-              });
-            }
-          }}
-        >
-          <Trash2Icon className="h-6 w-6 text-red-500" />
-          {!hasActiveMembership && (
-            <span className="text-red-500 ml-2">PRO Feature</span>
-          )}
-        </Button>
+        <AlertDialogContent className="bg-red-600 border-none text-white drop-shadow-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription className="text-white">
+              This action cannot be undone. This will permanently delete your
+              document and remove it from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-white text-black drop-shadow-sm border-none">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+            className="bg-black drop-shadow-sm border-none"
+              onClick={() => {
+                // delete document
+                startTransaction(async () => {
+                  await deleteDocument(id);
+                });
+              }}
+            >
+            Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
         <Button variant="outline" asChild>
           <a href={downloadUrl} download>

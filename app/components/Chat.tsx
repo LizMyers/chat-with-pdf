@@ -11,6 +11,9 @@ import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase";
 import { askQuestion } from "@/actions/askQuestion";
 import { useToast } from "@/components/ui/use-toast";
+import { Toast, ToastAction } from "@radix-ui/react-toast";
+import { useRouter } from "next/navigation";
+
 
 
 export type Message = {
@@ -23,6 +26,7 @@ export type Message = {
 function Chat({ id }: { id: string }) {
   const { user } = useUser();
   const { toast } = useToast();
+  const  router  = useRouter();
 
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -62,6 +66,10 @@ function Chat({ id }: { id: string }) {
     setMessages(newMessages);
   }, [snapshot]);
 
+  const handleUpgrade = () => {
+   router.push("/dashboard/upgrade");
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -90,9 +98,16 @@ function Chat({ id }: { id: string }) {
 
       if (!success) {
         toast({
-          variant: "destructive",
-          title: "Error",
+          title: "Message Limit Reached",
           description: message,
+          action: <ToastAction altText="Upgrade">
+            <Button
+              variant = "default"
+              className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 hover:text-white transition duration-300 drop-shadow-sm"
+              onClick={handleUpgrade}
+            >Upgrade</Button>
+          </ToastAction>,
+          className: "bg-black text-white p-4 rounded-md shadow-lg",
         });
 
         setMessages((prev) =>
