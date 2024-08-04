@@ -29,15 +29,35 @@ function FileUploader() {
     }
   }, [fileId, router]);
 
+  function formatUserFileSize(userFile: File) {
+    const userFileSizeInBytes = userFile.size;
+    let userFileSizeDisplay;
+
+    if (userFileSizeInBytes >= 1024 * 1024) {
+      // Convert to MB if file size is equal to or greater than 1 MB
+      const userFileSizeInMB = userFileSizeInBytes / (1024 * 1024);
+      userFileSizeDisplay = `${userFileSizeInMB.toFixed(2)} MB`;
+    } else {
+      // Otherwise, convert to KB
+      const userFileSizeInKB = userFileSizeInBytes / 1024;
+      userFileSizeDisplay = `${userFileSizeInKB.toFixed(2)} KB`;
+    }
+
+    return `File is too big: (${userFileSizeDisplay})`;
+  }
+
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
 
       if (file) {
-        console.log("File size: ", file.size);
-        console.log("Max file size: ", maxFileSize);
-
-        if (file.size > maxFileSize) {
+        if (file.type !== "application/pdf") {
+          toast({
+            variant: "destructive",
+            title: "Invalid File Type",
+            description: `Only PDF files are allowed.`,
+          });
+        } else if (file.size > maxFileSize) {
           toast({
             variant: "destructive",
             title: `File is too big: (${Math.floor(file.size / 1024)}KB)`,

@@ -174,7 +174,8 @@ const Header = () => {
               </Link>
             </Button>
           )}
-           <Button
+         {hasActiveMembership && (
+            <Button
             asChild
             variant="outline"
             className="hover:bg-indigo-600 border-none hidden md:flex"
@@ -188,6 +189,8 @@ const Header = () => {
               Pro Tier
             </Link>
           </Button>
+          )}
+
           <Button
             asChild
             variant="outline"
