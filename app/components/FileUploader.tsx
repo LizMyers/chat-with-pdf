@@ -60,7 +60,7 @@ function FileUploader() {
         } else if (file.size > maxFileSize) {
           toast({
             variant: "destructive",
-            title: `File is too big: (${Math.floor(file.size / 1024)}KB)`,
+            title: `File is too big: ${formatUserFileSize(file)}`,
             description: `Please use a PDF smaller than ${maxFileSizeInKB}KB`,
           });
         } else if (!isOverFileLimit && !filesLoading) {
@@ -77,8 +77,8 @@ function FileUploader() {
       } else {
         toast({
           variant: "destructive",
-          title: "No file selected",
-          description: "Please select a file to upload.",
+          title: "Invalid File Type",
+          description: "Sorry! Only PDF files are allowed.",
         });
       }
     },
@@ -160,8 +160,8 @@ function FileUploader() {
             ) : (
               <>
                 <CircleArrowDown className="h-20 w-20 animate-bounce" />
-                <p>Drag n drop some files here, or click to select files</p>
-                <p>(File size is limited to 100KB - or 2 pages) </p>
+                <p>Drag n drop PDF files here, or click to select files</p>
+                <p>File size is limited to 100KB (that's about 2 pages) </p>
               </>
             )}
           </div>

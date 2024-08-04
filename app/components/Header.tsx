@@ -125,6 +125,10 @@ const Header = () => {
                 >
                   Home
                 </Link>
+
+                <Link href="/dashboard" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
+                  My Documents
+                </Link>
              
               {!hasActiveMembership && (
                 <Link href="/dashboard/upgrade" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
@@ -138,12 +142,9 @@ const Header = () => {
                   setMenuOpen(false);
                   handleManagePlan();
                 }} href="#" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded">
-                  Pro Tier
+                  Pro Tier 
                 </Link>
               )}
-              <Link href="/dashboard" target='_top' className="text-gray-500 hover:bg-gray-200 p-2 rounded" onClick={() => setMenuOpen(false)}>
-                My Documents
-              </Link>
             </div>
           )}
         </div>
@@ -163,6 +164,17 @@ const Header = () => {
 
       <SignedIn>
         <div className="flex items-center space-x-2">
+         
+          <Button
+            asChild
+            variant="outline"
+            className="hover:bg-indigo-600 border-none hidden md:flex"
+          >
+            <Link href="/dashboard" target='_top' className="text-gray-500 hover:text-white">
+              My Documents
+            </Link>
+          </Button>
+
           {!hasActiveMembership && (
             <Button
               asChild
@@ -174,6 +186,7 @@ const Header = () => {
               </Link>
             </Button>
           )}
+
          {hasActiveMembership && (
             <Button
             asChild
@@ -191,16 +204,6 @@ const Header = () => {
           </Button>
           )}
 
-          <Button
-            asChild
-            variant="outline"
-            className="hover:bg-indigo-600 border-none hidden md:flex"
-          >
-            <Link href="/dashboard" target='_top' className="text-gray-500 hover:text-white">
-              My Documents
-            </Link>
-          </Button>
-         
           <UserButton m-2 appearance={customAppearance} />
         </div>
       </SignedIn>

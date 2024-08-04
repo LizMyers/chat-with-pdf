@@ -60,9 +60,8 @@ function PricingPage() {
         </div>
 
         <p className="mx-auto mt-6 max-w-2xl px-10 text-center text-lg leading-8 text-gray-600">
-          Choose an affordable plan thats packed with the best features for
-          interacting with your PDFs, enhancing productivity, and streamlining
-          your workflow.
+          Choose an affordable plan that's packed with the best features for
+          interacting with your PDFs and enhancing productivity.
         </p>
 
         <div className="max-w-md mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 md:max-w-2xl gap-8 lg:max-w-4xl">
@@ -85,8 +84,8 @@ function PricingPage() {
               className="mt-8 space-y-3 text-sm leading-6 text-gray-600"
             >
               <li className="flex gap-x-3">
-                <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />2
-                Documents
+                <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
+                Store 2 documents
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
@@ -94,7 +93,7 @@ function PricingPage() {
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
-                Try out the AI Chat Functionality
+                Try out the AI chat functionality
               </li>
             </ul>
           </div>
@@ -134,19 +133,19 @@ function PricingPage() {
             >
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
-                Store upto 20 Documents
+                Store up to 20 documents
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
-                Ability to Delete Documents
+                Ability to delete documents
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
-                Up to 100 messages per document
+                Up to 20 messages per document
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
-                Full Power AI Chat Functionality with Memory Recall
+                Full power AI chat functionality with memory recall
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
@@ -154,7 +153,7 @@ function PricingPage() {
               </li>
               <li className="flex gap-x-3">
                 <CheckIcon className="h-6 w-5 flex-none text-indigo-600" />
-                24-hour support response time
+                24-hour support 
               </li>
             </ul>
           </div>
