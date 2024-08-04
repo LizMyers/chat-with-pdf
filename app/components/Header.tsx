@@ -174,6 +174,20 @@ const Header = () => {
               </Link>
             </Button>
           )}
+           <Button
+            asChild
+            variant="outline"
+            className="hover:bg-indigo-600 border-none hidden md:flex"
+          >
+            <Link 
+              href="#" 
+              target='_top' 
+              onClick={handleManagePlan}
+              className="text-gray-500 hover:text-white"
+              >
+              Pro Tier
+            </Link>
+          </Button>
           <Button
             asChild
             variant="outline"
