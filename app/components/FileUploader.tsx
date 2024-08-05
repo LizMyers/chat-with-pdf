@@ -82,7 +82,7 @@ function FileUploader() {
         });
       }
     },
-    [handleUpload, isOverFileLimit, filesLoading, toast]
+    [handleUpload, isOverFileLimit, filesLoading, toast, maxFileSizeInKB]
   );
 
   const statusIcons: {

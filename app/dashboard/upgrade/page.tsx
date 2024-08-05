@@ -60,7 +60,7 @@ function PricingPage() {
         </div>
 
         <p className="mx-auto mt-6 max-w-2xl px-10 text-center text-lg leading-8 text-gray-600">
-          Choose an affordable plan that's packed with the best features for
+          Choose an affordable plan that&apos;s packed with the best features for
           interacting with your PDFs and enhancing productivity.
         </p>
 
