@@ -161,7 +161,7 @@ function FileUploader() {
               <>
                 <CircleArrowDown className="h-20 w-20 animate-bounce" />
                 <p>Drag n drop PDF files here, or click to select files</p>
-                <p>File size is limited to 100KB (that's about 2 pages) </p>
+                <p>File size is limited to 100KB (that&apos;s about 2 pages) </p>
               </>
             )}
           </div>
