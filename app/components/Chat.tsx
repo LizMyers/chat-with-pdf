@@ -98,6 +98,7 @@ function Chat({ id }: { id: string }) {
 
       if (!success) {
         toast({
+          variant: "destructive",
           title: "Message Limit Reached",
           description: message,
           action: <ToastAction altText="Upgrade">
@@ -107,7 +108,7 @@ function Chat({ id }: { id: string }) {
               onClick={handleUpgrade}
             >Upgrade</Button>
           </ToastAction>,
-          className: "bg-black text-white p-4 rounded-md shadow-lg",
+          className: "p-4 rounded-md shadow-lg",
         });
 
         setMessages((prev) =>

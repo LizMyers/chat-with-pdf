@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
@@ -48,8 +48,17 @@ function FileUploader() {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 1) {
+        toast({
+          variant: "destructive",
+          title: "Too Many Files",
+          description: "Please upload only one PDF file at a time.",
+        });
+        return;
+      }
+  
       const file = acceptedFiles[0];
-
+  
       if (file) {
         if (file.type !== "application/pdf") {
           toast({

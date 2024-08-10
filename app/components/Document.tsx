@@ -75,7 +75,7 @@ function Document({
           <AlertDialogFooter>
             <AlertDialogCancel className="bg-white text-black drop-shadow-sm border-none">Cancel</AlertDialogCancel>
             <AlertDialogAction
-            className="bg-black drop-shadow-sm border-none"
+            className="bg-black drop-shadow-md border-none hover:bg-white hover:text-black"
               onClick={() => {
                 // delete document
                 startTransaction(async () => {
