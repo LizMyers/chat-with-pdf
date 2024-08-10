@@ -60,7 +60,7 @@ function FileUploader() {
         } else if (file.size > maxFileSize) {
           toast({
             variant: "destructive",
-            title: `File is too big: ${formatUserFileSize(file)}`,
+            title: `${formatUserFileSize(file)}`,
             description: `Please use a PDF smaller than ${maxFileSizeInKB}KB`,
           });
         } else if (!isOverFileLimit && !filesLoading) {
