@@ -102,8 +102,8 @@ function Chat({ id }: { id: string }) {
           description: message,
           action: <ToastAction altText="Upgrade">
             <Button
-              variant = "default"
-              className="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 hover:text-white transition duration-300 drop-shadow-sm"
+              variant = "destructive"
+              className="bg-black text-white py-2 px-4 rounded-lg hover:bg-white hover:text-black transition duration-300 drop-shadow-sm"
               onClick={handleUpgrade}
             >Upgrade</Button>
           </ToastAction>,
